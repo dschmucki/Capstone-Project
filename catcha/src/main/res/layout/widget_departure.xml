@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    android:id="@+id/widget"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/touch_selector_white"
+    android:gravity="center_horizontal|top"
+    android:orientation="vertical"
+    android:padding="@dimen/widget_padding">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/widget_start_bp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="none"
+            android:paddingEnd="@dimen/icon_margin"
+            android:paddingStart="@dimen/icon_margin"
+            android:singleLine="true"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/text_font_size"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dash"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/text_font_size"/>
+
+        <TextView
+            android:id="@+id/widget_dest_bp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="none"
+            android:gravity="bottom"
+            android:paddingEnd="@dimen/icon_margin"
+            android:paddingStart="@dimen/icon_margin"
+            android:singleLine="true"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/text_font_size"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/departure_icon_width"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/time_icon"
+            android:paddingEnd="@dimen/padding"
+            android:paddingStart="0dp"
+            android:src="@drawable/ic_access_time_black_24dp"/>
+
+        <TextView
+            android:id="@+id/widget_departure_time_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="none"
+            android:paddingEnd="@dimen/icon_margin"
+            android:paddingStart="@dimen/icon_margin"
+            android:singleLine="true"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/text_font_size"/>
+
+        <TextView
+            android:id="@+id/widget_departure_time_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="none"
+            android:paddingEnd="@dimen/icon_margin"
+            android:paddingStart="@dimen/icon_margin"
+            android:singleLine="true"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/text_font_size"/>
+
+        <TextView
+            android:id="@+id/widget_departure_time_3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="none"
+            android:paddingEnd="@dimen/icon_margin"
+            android:paddingStart="@dimen/icon_margin"
+            android:singleLine="true"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/text_font_size"/>
+
+        <TextView
+            android:id="@+id/widget_departure_time_4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="none"
+            android:paddingEnd="@dimen/icon_margin"
+            android:paddingStart="@dimen/icon_margin"
+            android:singleLine="true"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/text_font_size"/>
+
+    </LinearLayout>
+
+</LinearLayout>

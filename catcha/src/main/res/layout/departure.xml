@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:cardElevation="4dp"
+                                    app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal|top"
+        android:orientation="vertical"
+        android:padding="@dimen/location_side_padding">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/departure_from_to_height"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/from_to"
+                android:layout_width="@dimen/departure_from_to_width"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/from_to_icon"
+                android:src="@drawable/a_b"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingEnd="@dimen/padding"
+                android:paddingStart="@dimen/padding">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="top"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/start_bp"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:ellipsize="none"
+                        android:paddingEnd="@dimen/icon_margin"
+                        android:paddingStart="@dimen/icon_margin"
+                        android:singleLine="true"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/text_font_size"/>
+
+                    <TextView
+                        android:id="@+id/distance"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_weight="1"
+                        android:ellipsize="none"
+                        android:paddingEnd="@dimen/icon_margin"
+                        android:paddingStart="@dimen/icon_margin"
+                        android:singleLine="true"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/text_font_size"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/dest_bp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:ellipsize="none"
+                    android:gravity="bottom"
+                    android:paddingEnd="@dimen/icon_margin"
+                    android:paddingStart="@dimen/icon_margin"
+                    android:singleLine="true"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/text_font_size"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/departure_space_height"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/departure_icon_width"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/time_icon"
+                android:paddingEnd="@dimen/padding"
+                android:paddingStart="0dp"
+                android:src="@drawable/ic_access_time_black_24dp"/>
+
+            <TextView
+                android:id="@+id/departure_time_1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="none"
+                android:paddingEnd="@dimen/icon_margin"
+                android:paddingStart="@dimen/icon_margin"
+                android:singleLine="true"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/text_font_size"/>
+
+            <TextView
+                android:id="@+id/departure_time_2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="none"
+                android:paddingEnd="@dimen/icon_margin"
+                android:paddingStart="@dimen/icon_margin"
+                android:singleLine="true"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/text_font_size"/>
+
+            <TextView
+                android:id="@+id/departure_time_3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="none"
+                android:paddingEnd="@dimen/icon_margin"
+                android:paddingStart="@dimen/icon_margin"
+                android:singleLine="true"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/text_font_size"/>
+
+            <TextView
+                android:id="@+id/departure_time_4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="none"
+                android:paddingEnd="@dimen/icon_margin"
+                android:paddingStart="@dimen/icon_margin"
+                android:singleLine="true"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/text_font_size"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/tracks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/departure_icon_width"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/track_icon"
+                android:paddingEnd="@dimen/departure_icon_width"
+                android:paddingStart="0dp"
+                android:src="@drawable/track"/>
+
+            <TextView
+                android:id="@+id/track_1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingEnd="@dimen/icon_margin"
+                android:paddingStart="@dimen/icon_margin"
+                android:singleLine="true"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/text_font_size"/>
+
+            <TextView
+                android:id="@+id/track_2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingEnd="@dimen/icon_margin"
+                android:paddingStart="@dimen/icon_margin"
+                android:singleLine="true"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/text_font_size"/>
+
+            <TextView
+                android:id="@+id/track_3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingEnd="@dimen/icon_margin"
+                android:paddingStart="@dimen/icon_margin"
+                android:singleLine="true"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/text_font_size"/>
+
+            <TextView
+                android:id="@+id/track_4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingEnd="@dimen/icon_margin"
+                android:paddingStart="@dimen/icon_margin"
+                android:singleLine="true"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/text_font_size"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>

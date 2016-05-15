@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="50dp"
+              android:layout_marginBottom="@dimen/location_vertical_margin"
+              android:layout_marginTop="@dimen/location_vertical_margin"
+              android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/from_to"
+        android:layout_width="18dp"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/from_to_icon"
+        android:src="@drawable/a_b"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingEnd="@dimen/padding"
+        android:paddingStart="@dimen/padding">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="top"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/start_bp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:ellipsize="none"
+                android:paddingEnd="@dimen/icon_margin"
+                android:paddingStart="@dimen/icon_margin"
+                android:singleLine="true"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/text_font_size"/>
+
+            <android.support.v7.widget.SwitchCompat
+                android:id="@+id/enabled"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/touch_target_min_size"
+                android:layout_gravity="center_vertical|end"
+                android:theme="@style/ControlAccentThemeOverlay"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/end_bp"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:ellipsize="none"
+            android:gravity="bottom"
+            android:paddingEnd="@dimen/icon_margin"
+            android:paddingStart="@dimen/icon_margin"
+            android:singleLine="true"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/text_font_size"/>
+
+    </LinearLayout>
+
+</LinearLayout>

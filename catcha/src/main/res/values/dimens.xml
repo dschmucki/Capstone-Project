@@ -1,0 +1,36 @@
+<resources>
+    <dimen name="custom_tab_layout_height">72dp</dimen>
+    <dimen name="fab_height">88dp</dimen>
+    <dimen name="fab_elevation">8dp</dimen>
+    <dimen name="touch_target_min_size">48dip</dimen>
+
+    <dimen name="list_bottom_spacing">72dip</dimen>
+    <dimen name="empty_font_size">16sp</dimen>
+    <dimen name="padding">10dp</dimen>
+    <dimen name="text_font_size">16sp</dimen>
+    <dimen name="icon_margin">4dp</dimen>
+
+    <dimen name="location_vertical_margin">12dip</dimen>
+    <dimen name="location_day_button_font_size">18sp</dimen>
+    <dimen name="location_collapse_expand_height">72dip</dimen>
+    <dimen name="location_side_padding">12dip</dimen>
+    <dimen name="location_hairline_height">1dip</dimen>
+    <dimen name="location_horizontal_padding">16dp</dimen>
+    <dimen name="location_dialog_padding">16dp</dimen>
+
+    <dimen name="departure_marker_time_width">50dp</dimen>
+    <dimen name="departure_marker_destination_width">125dp</dimen>
+    <dimen name="departure_marker_height">25dp</dimen>
+    <dimen name="departure_marker_font_size">12sp</dimen>
+    <dimen name="departure_from_to_width">18dp</dimen>
+    <dimen name="departure_from_to_height">50dp</dimen>
+    <dimen name="departure_space_height">20dp</dimen>
+    <dimen name="departure_icon_width">28dp</dimen>
+
+    <dimen name="widget_departure_default_height">40dp</dimen>
+    <dimen name="widget_departure_default_width">250dp</dimen>
+    <dimen name="widget_departure_min_resize_height">@dimen/widget_departure_default_height</dimen>
+    <dimen name="widget_departure_min_resize_width">@dimen/widget_departure_default_width</dimen>
+    <dimen name="widget_padding">8dp</dimen>
+
+</resources>
