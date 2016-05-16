@@ -41,7 +41,7 @@ public class DepartureViewHolder extends RecyclerView.ViewHolder {
 
     private Departure departure;
 
-    private View view;
+    private final View view;
 
     public DepartureViewHolder(View itemView) {
         super(itemView);

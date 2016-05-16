@@ -27,7 +27,7 @@
             android:id="@+id/days_of_week"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
+            android:layout_gravity="center_vertical|start"
             android:ellipsize="end"
             android:focusable="true"
             android:singleLine="true"

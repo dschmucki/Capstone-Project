@@ -21,14 +21,14 @@ import java.util.HashSet;
 public final class DaysOfWeek {
 
     public static final int DAYS_IN_A_WEEK = 7;
-    public static final int ALL_DAYS_SET = 0x7f;
-    public static final int NO_DAYS_SET = 0;
+    private static final int ALL_DAYS_SET = 0x7f;
+    private static final int NO_DAYS_SET = 0;
 
-    public static int convertDayToBitIndex(int day) {
+    private static int convertDayToBitIndex(int day) {
         return (day + 5) % DAYS_IN_A_WEEK;
     }
 
-    static int convertBitIndexToDay(int bitIndex) {
+    private static int convertBitIndexToDay(int bitIndex) {
         return (bitIndex + 1) % DAYS_IN_A_WEEK + 1;
     }
 
@@ -104,7 +104,7 @@ public final class DaysOfWeek {
     }
 
     public HashSet<Integer> getSetDays() {
-        final HashSet<Integer> result = new HashSet<Integer>();
+        final HashSet<Integer> result = new HashSet<>();
         for (int bitIndex = 0; bitIndex < DAYS_IN_A_WEEK; bitIndex++) {
             if (isBitEnabled(bitIndex)) {
                 result.add(convertBitIndexToDay(bitIndex));

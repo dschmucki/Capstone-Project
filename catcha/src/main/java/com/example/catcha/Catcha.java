@@ -1,16 +1,11 @@
 package com.example.catcha;
 
-import android.Manifest;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v13.app.FragmentPagerAdapter;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -30,9 +25,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class Catcha extends AppCompatActivity implements ActivityCompat.OnRequestPermissionsResultCallback {
-
-    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
+public class Catcha extends AppCompatActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -46,8 +39,6 @@ public class Catcha extends AppCompatActivity implements ActivityCompat.OnReques
     private ViewPagerAdapter viewPagerAdapter;
     private boolean isTabletWide = false;
     private int locationTabIndex = 2;
-
-    private boolean permissionDenied = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,10 +61,6 @@ public class Catcha extends AppCompatActivity implements ActivityCompat.OnReques
         tabLayout.setupWithViewPager(viewPager);
         setupTabIcons();
         setupFab();
-
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            PermissionUtils.requestPermission(this, LOCATION_PERMISSION_REQUEST_CODE, Manifest.permission.ACCESS_FINE_LOCATION, true);
-        }
     }
 
     @Override
@@ -84,34 +71,15 @@ public class Catcha extends AppCompatActivity implements ActivityCompat.OnReques
 
     @Override
     protected void onResume() {
-        if (permissionDenied) {
-            showMissingPermissionError();
-            permissionDenied = false;
-        }
         super.onResume();
-    }
-
-    private void showMissingPermissionError() {
-        PermissionUtils.PermissionDeniedDialog.newInstance(true).show(getFragmentManager(), "dialog");
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode != LOCATION_PERMISSION_REQUEST_CODE) {
-            return;
-        }
-
-        if (PermissionUtils.isPermissionGranted(permissions, grantResults, Manifest.permission.ACCESS_FINE_LOCATION)) {
-            permissionDenied = true;
-        }
     }
 
     private void setupViewPager(final ViewPager viewPager) {
         viewPagerAdapter = new ViewPagerAdapter(getFragmentManager());
-        viewPagerAdapter.addFragment(new DeparturesFragment(), R.string.tab_departures_title);
-        viewPagerAdapter.addFragment(new GoogleMapFragment(), R.string.tab_map_title);
+        viewPagerAdapter.addFragment(new DeparturesFragment());
+        viewPagerAdapter.addFragment(new GoogleMapFragment());
         locationTabIndex = 2;
-        viewPagerAdapter.addFragment(new LocationsFragment(), R.string.tab_locations_title);
+        viewPagerAdapter.addFragment(new LocationsFragment());
 
         viewPager.setAdapter(viewPagerAdapter);
 
@@ -184,7 +152,7 @@ public class Catcha extends AppCompatActivity implements ActivityCompat.OnReques
             return fragmentList.size();
         }
 
-        public void addFragment(final Fragment fragment, final int title) {
+        public void addFragment(final Fragment fragment) {
             fragmentList.add(fragment);
         }
 

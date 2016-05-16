@@ -14,9 +14,6 @@ import com.example.catcha.locations.LocationClickHandler;
 import com.example.catcha.locations.ScrollHandler;
 import com.example.catcha.provider.Location;
 
-/**
- * Created by domi on 19.04.16.
- */
 public class LocationsAdapter extends RecyclerView.Adapter<LocationViewHolder> {
 
     private static final String TAG = LocationsAdapter.class.getSimpleName();
@@ -34,10 +31,10 @@ public class LocationsAdapter extends RecyclerView.Adapter<LocationViewHolder> {
     private long expandedId = Location.INVALID_ID;
     private Cursor cursor;
 
-    public LocationsAdapter(Context context, Bundle savedState, LocationClickHandler locationClickHandler, ScrollHandler smootScrollController) {
+    public LocationsAdapter(Context context, Bundle savedState, LocationClickHandler locationClickHandler, ScrollHandler smoothScrollController) {
         this.context = context;
         this.inflater = LayoutInflater.from(context);
-        this.scrollHandler = smootScrollController;
+        this.scrollHandler = smoothScrollController;
         this.locationClickHandler = locationClickHandler;
         if (savedState != null) {
             expandedId = savedState.getLong(KEY_EXPANDED_ID, Location.INVALID_ID);

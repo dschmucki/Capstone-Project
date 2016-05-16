@@ -11,7 +11,7 @@ public class CatchaDatabaseHelper extends SQLiteOpenHelper {
 
     private static final int VERSION = 6;
 
-    static final String DATABASE_NAME = "catcha.db";
+    private static final String DATABASE_NAME = "catcha.db";
     static final String LOCATIONS_TABLE_NAME = "locations";
     static final String DEPARTURES_TABLE_NAME = "departures";
 

@@ -15,15 +15,12 @@ public class DeparturesAdapter extends RecyclerView.Adapter<DepartureViewHolder>
 
     private static final String TAG = DeparturesAdapter.class.getSimpleName();
 
-    private final Context context;
     private final LayoutInflater inflater;
 
     private Cursor cursor;
 
     public DeparturesAdapter(Context context) {
-        this.context = context;
         this.inflater = LayoutInflater.from(context);
-
         setHasStableIds(true);
     }
 

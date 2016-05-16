@@ -75,7 +75,7 @@ public class Location implements Parcelable, CatchaContract.LocationsColumns {
 
     private static final int COLUMN_COUNT = LAT_SIN_INDEX + 1;
 
-    public static ContentValues createContentValues(Location location) {
+    private static ContentValues createContentValues(Location location) {
         ContentValues contentValues = new ContentValues(COLUMN_COUNT);
         if (location.id != INVALID_ID) {
             contentValues.put(CatchaContract.LocationsColumns._ID, location.id);
@@ -95,11 +95,11 @@ public class Location implements Parcelable, CatchaContract.LocationsColumns {
         return contentValues;
     }
 
-    public static Uri getUri(long locationId) {
+    private static Uri getUri(long locationId) {
         return ContentUris.withAppendedId(CONTENT_URI, locationId);
     }
 
-    public static long getId(Uri contentUri) {
+    private static long getId(Uri contentUri) {
         return ContentUris.parseId(contentUri);
     }
 
@@ -109,7 +109,7 @@ public class Location implements Parcelable, CatchaContract.LocationsColumns {
 
     public static Location getLocation(ContentResolver contentResolver, long locationId) {
         try (Cursor cursor = contentResolver.query(getUri(locationId), QUERY_COLUMNS, null, null, null)) {
-            if (cursor.moveToFirst()) {
+            if (cursor != null && cursor.moveToFirst()) {
                 return new Location(cursor);
             }
         }
@@ -171,10 +171,10 @@ public class Location implements Parcelable, CatchaContract.LocationsColumns {
     public DaysOfWeek daysOfWeek;
     public double lat;
     public double lon;
-    public double latCos;
-    public double lonCos;
-    public double lonSin;
-    public double latSin;
+    private double latCos;
+    private double lonCos;
+    private double lonSin;
+    private double latSin;
 
     public Location() {
     }
@@ -207,7 +207,7 @@ public class Location implements Parcelable, CatchaContract.LocationsColumns {
         latSin = c.getDouble(LAT_SIN_INDEX);
     }
 
-    Location(Parcel p) {
+    private Location(Parcel p) {
         id = p.readLong();
         enabled = p.readInt() == 1;
         startBp = p.readString();

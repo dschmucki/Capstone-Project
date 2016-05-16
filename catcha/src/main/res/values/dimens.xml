@@ -33,4 +33,6 @@
     <dimen name="widget_departure_min_resize_width">@dimen/widget_departure_default_width</dimen>
     <dimen name="widget_padding">8dp</dimen>
 
+    <item name="search_distance_in_km" type="dimen" format="float">0.5</item>
+
 </resources>

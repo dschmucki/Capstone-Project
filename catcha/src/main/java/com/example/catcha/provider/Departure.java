@@ -23,11 +23,11 @@ public class Departure implements Parcelable, CatchaContract.DeparturesColumns {
     private static final long MILLIS_IN_HOUR = 1000 * 60 * 60;
     private static final long TIME_THRESHOLD = 1000 * 60 * 15;
 
-    public static final long INVALID_ID = -1;
+    private static final long INVALID_ID = -1;
 
     public static final String DEPARTURES_BY_LOCATION_SELECTION = CatchaDatabaseHelper.DEPARTURES_TABLE_NAME + "." + LOCATION_ID + " = ?";
 
-    public static final String buildDeparturesNotInLocationSelection(List<String> locationIds) {
+    public static String buildDeparturesNotInLocationSelection(List<String> locationIds) {
         return CatchaDatabaseHelper.DEPARTURES_TABLE_NAME + "." + LOCATION_ID + " NOT IN (" + TextUtils.join(",", locationIds) + ")";
     }
 
@@ -67,7 +67,7 @@ public class Departure implements Parcelable, CatchaContract.DeparturesColumns {
 
     private static final int COLUMN_COUNT = DISTANCE_INDEX + 1;
 
-    public static ContentValues createContentValues(Departure departure) {
+    private static ContentValues createContentValues(Departure departure) {
         ContentValues contentValues = new ContentValues(COLUMN_COUNT);
         if (departure.id != INVALID_ID) {
             contentValues.put(CatchaContract.DeparturesColumns._ID, departure.id);
@@ -89,11 +89,11 @@ public class Departure implements Parcelable, CatchaContract.DeparturesColumns {
         return contentValues;
     }
 
-    public static Uri getUri(long departureId) {
+    private static Uri getUri(long departureId) {
         return ContentUris.withAppendedId(CONTENT_URI, departureId);
     }
 
-    public static long getId(Uri contentUri) {
+    private static long getId(Uri contentUri) {
         return ContentUris.parseId(contentUri);
     }
 
@@ -103,7 +103,7 @@ public class Departure implements Parcelable, CatchaContract.DeparturesColumns {
 
     public static Departure getNearestDeparture(ContentResolver contentResolver) {
         try (Cursor cursor = contentResolver.query(CONTENT_URI, QUERY_COLUMNS, null, null, NEAREST_DEPARTURE_SORT_ORDER)) {
-            if (cursor.moveToFirst()) {
+            if (cursor != null && cursor.moveToFirst()) {
                 return new Departure(cursor);
             }
         }
@@ -161,10 +161,10 @@ public class Departure implements Parcelable, CatchaContract.DeparturesColumns {
     public long locationId;
     public String startBp;
     public String destBp;
-    public String departureTime1;
-    public String departureTime2;
-    public String departureTime3;
-    public String departureTime4;
+    private String departureTime1;
+    private String departureTime2;
+    private String departureTime3;
+    private String departureTime4;
     public String track1;
     public String track2;
     public String track3;
@@ -214,7 +214,7 @@ public class Departure implements Parcelable, CatchaContract.DeparturesColumns {
         distance = c.getInt(DISTANCE_INDEX);
     }
 
-    Departure(Parcel p) {
+    private Departure(Parcel p) {
         id = p.readLong();
         locationId = p.readLong();
         startBp = p.readString();
@@ -239,15 +239,15 @@ public class Departure implements Parcelable, CatchaContract.DeparturesColumns {
         return timeStringToLong(departureTime1);
     }
 
-    public long getDepartureTime2InMillis() {
+    private long getDepartureTime2InMillis() {
         return timeStringToLong(departureTime2);
     }
 
-    public long getDepartureTime3InMillis() {
+    private long getDepartureTime3InMillis() {
         return timeStringToLong(departureTime3);
     }
 
-    public long getDepartureTime4InMillis() {
+    private long getDepartureTime4InMillis() {
         return timeStringToLong(departureTime4);
     }
 

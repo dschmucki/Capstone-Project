@@ -27,13 +27,6 @@ public class LocationUpdateHandler {
                 }
                 return null;
             }
-
-//            @Override
-//            protected void onPostExecute(Location location) {
-//                if (location != null) {
-//                    LocationUtils.popLocationSetSnackbar(snackbarAnchor, location.toString());
-//                }
-//            }
         };
         addTask.execute();
     }

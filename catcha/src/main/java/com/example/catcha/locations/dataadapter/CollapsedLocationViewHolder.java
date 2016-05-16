@@ -11,8 +11,8 @@ import com.example.catcha.provider.Location;
 
 public class CollapsedLocationViewHolder extends LocationViewHolder {
 
-    public final TextView daysOfWeek;
-    public final View hairLine;
+    private final TextView daysOfWeek;
+    private final View hairLine;
 
     public CollapsedLocationViewHolder(View itemView, final LocationClickHandler locationClickHandler, final LocationsAdapter locationsAdapter) {
         super(itemView, locationClickHandler);

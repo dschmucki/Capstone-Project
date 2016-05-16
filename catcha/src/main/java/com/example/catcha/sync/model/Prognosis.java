@@ -1,8 +1,5 @@
 package com.example.catcha.sync.model;
 
-/**
- * Created by domi on 29.03.16.
- */
 public class Prognosis {
 
     private String platform;

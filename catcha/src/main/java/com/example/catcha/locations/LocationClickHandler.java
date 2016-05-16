@@ -14,7 +14,7 @@ public class LocationClickHandler {
     private final LocationUpdateHandler locationUpdateHandler;
 
     private Bundle previousDaysOfWeekMap;
-    private int[] dayOrder;
+    private final int[] dayOrder;
 
     public LocationClickHandler(Bundle savedState, LocationUpdateHandler locationUpdateHandler) {
         this.locationUpdateHandler = locationUpdateHandler;

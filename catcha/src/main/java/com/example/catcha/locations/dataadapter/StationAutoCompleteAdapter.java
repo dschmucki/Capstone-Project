@@ -25,8 +25,8 @@ public class StationAutoCompleteAdapter extends ArrayAdapter<Location> implement
     private TransportService transportService;
     private List<Location> stations;
 
-    public StationAutoCompleteAdapter(Context context, int textViewResourceId) {
-        super(context, textViewResourceId);
+    public StationAutoCompleteAdapter(Context context) {
+        super(context, android.R.layout.simple_dropdown_item_1line);
 
         initTransportService();
         stations = new ArrayList<>();

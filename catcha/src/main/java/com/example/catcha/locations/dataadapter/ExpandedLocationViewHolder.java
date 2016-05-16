@@ -30,9 +30,9 @@ public class ExpandedLocationViewHolder extends LocationViewHolder {
 
     private static final String TAG = ExpandedLocationViewHolder.class.getSimpleName();
 
-    public final LinearLayout repeatDays;
-    public final CompoundButton[] dayButtons = new CompoundButton[7];
-    public final ImageButton delete;
+    private final LinearLayout repeatDays;
+    private final CompoundButton[] dayButtons = new CompoundButton[7];
+    private final ImageButton delete;
 
     private final int[] dayOrder;
 

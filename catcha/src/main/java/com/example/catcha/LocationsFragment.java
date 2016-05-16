@@ -40,11 +40,6 @@ public class LocationsFragment extends Fragment implements LoaderManager.LoaderC
     private LocationClickHandler locationClickHandler;
     private LinearLayoutManager layoutManager;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -63,11 +58,6 @@ public class LocationsFragment extends Fragment implements LoaderManager.LoaderC
         getLoaderManager().initLoader(0, null, this);
 
         return view;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
     }
 
     @Override

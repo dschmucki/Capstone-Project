@@ -65,7 +65,7 @@ public class DeparturesFragment extends Fragment implements LoaderManager.Loader
         if (updateFuture == null) {
             final Handler mainHandler = new Handler(Looper.getMainLooper());
             long currentTimeMillis = System.currentTimeMillis();
-            long secondsUntilNextMinute = ((1 * 60 * 1000 + 0 * 1000 + currentTimeMillis + 59999) / 60000 * 60000 - (1 * 60 * 1000 + 0 * 1000 + currentTimeMillis)) / 1000;
+            long secondsUntilNextMinute = ((60 * 1000 + currentTimeMillis + 59999) / 60000 * 60000 - (60 * 1000 + currentTimeMillis)) / 1000;
             updateFuture = Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(new Runnable() {
                 @Override
                 public void run() {
@@ -90,11 +90,6 @@ public class DeparturesFragment extends Fragment implements LoaderManager.Loader
             updateFuture = null;
         }
         super.onDestroyView();
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
     }
 
     @Override

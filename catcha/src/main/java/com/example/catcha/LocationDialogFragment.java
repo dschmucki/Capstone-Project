@@ -33,8 +33,8 @@ public class LocationDialogFragment extends DialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.dialog_location_create, null);
 
-        final StationAutoCompleteAdapter startAutoCompleteAdapter = new StationAutoCompleteAdapter(getActivity(), android.R.layout.simple_dropdown_item_1line);
-        final StationAutoCompleteAdapter destinationAutoCompleteAdapter = new StationAutoCompleteAdapter(getActivity(), android.R.layout.simple_dropdown_item_1line);
+        final StationAutoCompleteAdapter startAutoCompleteAdapter = new StationAutoCompleteAdapter(getActivity());
+        final StationAutoCompleteAdapter destinationAutoCompleteAdapter = new StationAutoCompleteAdapter(getActivity());
 
         final AutoCompleteTextView startTextView = ButterKnife.findById(dialogView, R.id.autocomplete_start);
         startTextView.setAdapter(startAutoCompleteAdapter);

@@ -11,6 +11,7 @@ import android.content.SyncResult;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 
 import com.example.catcha.R;
 import com.example.catcha.locations.utils.DayOrderUtils;
@@ -114,11 +115,14 @@ public class CatchaSyncAdapter extends AbstractThreadedSyncAdapter {
     private List<Location> getLocationByEnabledCurrentDayInRange(android.location.Location gpsLocation) {
         Log.d(TAG, "Getting valid locations for now ...");
 
+        TypedValue searchDistance = new TypedValue();
+        getContext().getResources().getValue(R.dimen.search_distance_in_km, searchDistance, true);
+
         return Location.getLocations(getContext().getContentResolver(),
                 Location.buildLocationsEnabledWithTimeAndInDistanceSelection(
                         DayOrderUtils.getDayOfWeek(),
                         gpsLocation.getLatitude(),
-                        gpsLocation.getLongitude(), 1.0));
+                        gpsLocation.getLongitude(), searchDistance.getFloat()));
     }
 
     private void deleteOutOfRangeDepartures(List<Location> locations) {
@@ -223,7 +227,7 @@ public class CatchaSyncAdapter extends AbstractThreadedSyncAdapter {
         ContentResolver.cancelSync(getSyncAccount(context), context.getString(R.string.content_authority));
     }
 
-    public static Account getSyncAccount(Context context) {
+    private static Account getSyncAccount(Context context) {
         AccountManager accountManager = (AccountManager) context.getSystemService(Context.ACCOUNT_SERVICE);
 
         Account newAccount = new Account(context.getString(R.string.app_name), context.getString(R.string.sync_account_type));

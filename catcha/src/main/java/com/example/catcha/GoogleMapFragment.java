@@ -51,10 +51,6 @@ import java.util.concurrent.TimeUnit;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-
-/**
- * Created by domi on 13.04.16.
- */
 public class GoogleMapFragment extends Fragment implements OnMapReadyCallback,
         FragmentCompat.OnRequestPermissionsResultCallback,
         GoogleApiClient.ConnectionCallbacks,
@@ -64,8 +60,8 @@ public class GoogleMapFragment extends Fragment implements OnMapReadyCallback,
 
     private static final String TAG = GoogleMapFragment.class.getSimpleName();
 
-    public static final long UPDATE_INTERVAL_IN_MILLISECONDS = 10000;
-    public static final long FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS = UPDATE_INTERVAL_IN_MILLISECONDS / 2;
+    private static final long UPDATE_INTERVAL_IN_MILLISECONDS = 10000;
+    private static final long FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS = UPDATE_INTERVAL_IN_MILLISECONDS / 2;
 
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
     private boolean permissionDenied = false;
@@ -94,6 +90,10 @@ public class GoogleMapFragment extends Fragment implements OnMapReadyCallback,
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            PermissionUtils.requestPermission((AppCompatActivity) getActivity(), LOCATION_PERMISSION_REQUEST_CODE, Manifest.permission.ACCESS_FINE_LOCATION, true);
+        }
 
         buildGoogleApiClient();
         departures = new ArrayList<>();
@@ -126,9 +126,7 @@ public class GoogleMapFragment extends Fragment implements OnMapReadyCallback,
     }
 
     private void enableMyLocation() {
-        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            PermissionUtils.requestPermission((AppCompatActivity) getActivity(), LOCATION_PERMISSION_REQUEST_CODE, Manifest.permission.ACCESS_FINE_LOCATION, true);
-        } else if (googleMap != null) {
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && googleMap != null) {
             googleMap.setMyLocationEnabled(true);
         }
     }
@@ -137,18 +135,25 @@ public class GoogleMapFragment extends Fragment implements OnMapReadyCallback,
         if (updateFuture == null) {
             final Handler mainHandler = new Handler(Looper.getMainLooper());
             long currentTimeMillis = System.currentTimeMillis();
-            long secondsUntilNextMinute = ((1 * 60 * 1000 + 0 * 1000 + currentTimeMillis + 59999) / 60000 * 60000 - (1 * 60 * 1000 + 0 * 1000 + currentTimeMillis)) / 1000;
+            long secondsUntilNextMinute = ((60 * 1000 + currentTimeMillis + 59999) / 60000 * 60000 - (60 * 1000 + currentTimeMillis)) / 1000;
             updateFuture = Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(new Runnable() {
                 @Override
                 public void run() {
                     mainHandler.post(new Runnable() {
                         @Override
                         public void run() {
+                            checkAndEnableMyLocation();
                             drawDepartureMarkers();
                         }
                     });
                 }
             }, secondsUntilNextMinute, 60, TimeUnit.SECONDS);
+        }
+    }
+
+    private void checkAndEnableMyLocation() {
+        if (!googleMap.isMyLocationEnabled()) {
+            enableMyLocation();
         }
     }
 
@@ -203,16 +208,19 @@ public class GoogleMapFragment extends Fragment implements OnMapReadyCallback,
             canvas.drawText(String.valueOf(d.destBp), 20 + timeWidth, textCenterVerticalPos(height, destinationColor), destinationColor);
             canvas.drawText(getResources().getString(R.string.map_marker_triangle), bitmap.getWidth() / 2, height + 28, triangleColor);
 
-            LatLng markerLocation = (com.example.catcha.provider.Location.getLocation(getActivity().getContentResolver(), d.locationId)).getLatLng();
-            latLngList.add(markerLocation);
+            com.example.catcha.provider.Location location = com.example.catcha.provider.Location.getLocation(getActivity().getContentResolver(), d.locationId);
+            if (location != null) {
+                LatLng markerLocation = location.getLatLng();
+                latLngList.add(markerLocation);
 
-            Marker marker = googleMap.addMarker(new MarkerOptions()
-                    .position(markerLocation)
-                    .icon(BitmapDescriptorFactory.fromBitmap(bitmap))
-                    .anchor(0.5f, 1.25f));
-            markerList.add(marker);
+                Marker marker = googleMap.addMarker(new MarkerOptions()
+                        .position(markerLocation)
+                        .icon(BitmapDescriptorFactory.fromBitmap(bitmap))
+                        .anchor(0.5f, 1.25f));
+                markerList.add(marker);
 
-            bitmap.recycle();
+                bitmap.recycle();
+            }
         }
     }
 
@@ -228,6 +236,7 @@ public class GoogleMapFragment extends Fragment implements OnMapReadyCallback,
 
         if (PermissionUtils.isPermissionGranted(permissions, grantResults, Manifest.permission.ACCESS_FINE_LOCATION)) {
             enableMyLocation();
+            startLocationUpdates();
         } else {
             permissionDenied = true;
         }
@@ -276,9 +285,7 @@ public class GoogleMapFragment extends Fragment implements OnMapReadyCallback,
     }
 
     private void startLocationUpdates() {
-        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            PermissionUtils.requestPermission((AppCompatActivity) getActivity(), LOCATION_PERMISSION_REQUEST_CODE, Manifest.permission.ACCESS_FINE_LOCATION, true);
-        } else if (googleMap != null) {
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             LocationServices.FusedLocationApi.requestLocationUpdates(googleApiClient, locationRequest, this);
         }
     }
@@ -324,9 +331,7 @@ public class GoogleMapFragment extends Fragment implements OnMapReadyCallback,
 
         if (currentLocation == null) {
 
-            if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                PermissionUtils.requestPermission((AppCompatActivity) getActivity(), LOCATION_PERMISSION_REQUEST_CODE, Manifest.permission.ACCESS_FINE_LOCATION, true);
-            } else if (googleMap != null) {
+            if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 currentLocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
             }
         }

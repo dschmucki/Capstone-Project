@@ -16,18 +16,15 @@ public abstract class LocationViewHolder extends RecyclerView.ViewHolder {
     private static final float LOCATION_ENABLED_ALPHA = 1f;
     private static final float LOCATION_DISABLED_ALPHA = 0.69f;
 
-    public final TextView startBp;
-    public final TextView endBp;
-    public final CompoundButton enabled;
+    private final TextView startBp;
+    private final TextView endBp;
+    private final CompoundButton enabled;
     public final View arrow;
 
-    protected Location location;
+    Location location;
 
-    private final LocationClickHandler locationClickHandler;
-
-    public LocationViewHolder(View itemView, final LocationClickHandler locationClickHandler) {
+    LocationViewHolder(View itemView, final LocationClickHandler locationClickHandler) {
         super(itemView);
-        this.locationClickHandler = locationClickHandler;
         startBp = (TextView) itemView.findViewById(R.id.start_bp);
         endBp = (TextView) itemView.findViewById(R.id.end_bp);
         enabled = (CompoundButton) itemView.findViewById(R.id.enabled);
@@ -41,7 +38,7 @@ public abstract class LocationViewHolder extends RecyclerView.ViewHolder {
         });
     }
 
-    public void setData(Location location) {
+    void setData(Location location) {
         this.location = location;
     }
 
@@ -51,18 +48,18 @@ public abstract class LocationViewHolder extends RecyclerView.ViewHolder {
 
     public abstract void bindLocation(Context context, Location location);
 
-    protected void bindEnabledSwitch(Context context, Location location) {
+    void bindEnabledSwitch(Context context, Location location) {
         enabled.setChecked(location.enabled);
         ((SwitchCompat) enabled).setTextOn(context.getString(R.string.on_switch));
         ((SwitchCompat) enabled).setTextOff(context.getString(R.string.off_switch));
     }
 
-    protected void bindStartBp(Location location) {
+    void bindStartBp(Location location) {
         startBp.setAlpha(location.enabled ? LOCATION_ENABLED_ALPHA : LOCATION_DISABLED_ALPHA);
         startBp.setText(location.startBp);
     }
 
-    protected void bindEndBp(Location location) {
+    void bindEndBp(Location location) {
         endBp.setAlpha(location.enabled ? LOCATION_ENABLED_ALPHA : LOCATION_DISABLED_ALPHA);
         endBp.setText(location.endBp);
     }

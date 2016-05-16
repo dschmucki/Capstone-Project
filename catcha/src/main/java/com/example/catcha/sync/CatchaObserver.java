@@ -7,7 +7,7 @@ import android.os.Handler;
 
 public class CatchaObserver extends ContentObserver {
 
-    private Context context;
+    private final Context context;
 
     /**
      * Creates a content observer.
